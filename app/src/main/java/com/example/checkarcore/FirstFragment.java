@@ -50,11 +50,19 @@ public class FirstFragment extends Fragment {
                         }
                     }, 200);
                 }
-                if (availability.isSupported()) {
-                    Toast myToast = Toast.makeText(getActivity(), "ARCore supported", Toast.LENGTH_SHORT);
+                if (availability == ArCoreApk.Availability.SUPPORTED_APK_TOO_OLD) {
+                    Toast myToast = Toast.makeText(getActivity(), "SUPPORTED_INSTALLED", Toast.LENGTH_SHORT);
                     myToast.show();
-                } else { // The device is unsupported or unknown.
-                    Toast myToast = Toast.makeText(getActivity(), "Not Supported", Toast.LENGTH_SHORT);
+                } else if(availability == ArCoreApk.Availability.SUPPORTED_APK_TOO_OLD){ // The device is unsupported or unknown.
+                    Toast myToast = Toast.makeText(getActivity(), "SUPPORTED_APK_TOO_OLD", Toast.LENGTH_SHORT);
+                    myToast.show();
+                } else if(availability == ArCoreApk.Availability.SUPPORTED_NOT_INSTALLED){ // The device is unsupported or unknown.
+                    Toast myToast = Toast.makeText(getActivity(), "SUPPORTED_NOT_INSTALLED", Toast.LENGTH_SHORT);
+                    myToast.show();
+                }
+
+                else {
+                    Toast myToast = Toast.makeText(getActivity(), "error happend", Toast.LENGTH_SHORT);
                     myToast.show();
                 }
             }
